@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from 'react';
-import { Check, Loader2, AlertCircle, ArrowLeft } from 'lucide-react';
+import { Check, Loader2, AlertCircle } from 'lucide-react';
 import { supabase, type RegistrationInput } from '@/lib/supabase';
+import SiteHeader from '@/components/SiteHeader';
 
 const EVENTS = [
   '2026 봄 컨퍼런스',
@@ -67,8 +68,10 @@ export default function RegistrationForm({ onBack }: { onBack: () => void }) {
 
   if (status === 'success') {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center px-4 sm:px-6 py-10 sm:py-12">
-        <div className="w-full max-w-md border border-neutral-900 p-6 sm:p-10 text-center">
+      <div className="min-h-screen bg-white flex flex-col">
+        <SiteHeader onHome={onBack} action={{ type: 'back', onClick: onBack }} />
+        <div className="flex-1 flex items-center justify-center px-4 sm:px-6 py-10 sm:py-12">
+          <div className="w-full max-w-md border border-neutral-900 p-6 sm:p-10 text-center">
           <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center border-2 border-neutral-900">
             <Check className="h-7 w-7 text-neutral-900" strokeWidth={2.5} />
           </div>
@@ -83,21 +86,17 @@ export default function RegistrationForm({ onBack }: { onBack: () => void }) {
           >
             새 신청서 작성
           </button>
+          </div>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-white flex items-center justify-center px-4 sm:px-6 py-10 sm:py-12">
+    <div className="min-h-screen bg-white flex flex-col">
+      <SiteHeader onHome={onBack} action={{ type: 'back', onClick: onBack }} />
+      <div className="flex-1 flex items-center justify-center px-4 sm:px-6 py-10 sm:py-12">
       <div className="w-full max-w-md">
-        <button
-          onClick={onBack}
-          className="mb-6 flex items-center gap-1.5 text-sm text-neutral-500 hover:text-neutral-900 transition-colors"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          뒤로
-        </button>
         <div className="mb-6 sm:mb-8">
           <h1 className="text-xl sm:text-2xl font-bold text-neutral-900 tracking-tight">이벤트 신청서</h1>
           <p className="mt-2 text-sm text-neutral-500">아래 정보를 입력하여 신청해 주세요.</p>
@@ -210,6 +209,7 @@ export default function RegistrationForm({ onBack }: { onBack: () => void }) {
             )}
           </button>
         </form>
+      </div>
       </div>
     </div>
   );

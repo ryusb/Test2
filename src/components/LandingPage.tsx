@@ -1,4 +1,5 @@
 import { Calendar, Users, MapPin, ArrowRight, Clock } from 'lucide-react';
+import SiteHeader from '@/components/SiteHeader';
 
 const FEATURES = [
   {
@@ -42,23 +43,7 @@ const SCHEDULE = [
 export default function LandingPage({ onApply }: { onApply: () => void }) {
   return (
     <div className="min-h-screen bg-white">
-      {/* Header */}
-      <header className="border-b border-neutral-200">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="h-7 w-7 border-2 border-neutral-900 flex items-center justify-center">
-              <span className="text-xs font-bold text-neutral-900">E</span>
-            </div>
-            <span className="font-bold text-neutral-900 tracking-tight text-sm sm:text-base">EventHub</span>
-          </div>
-          <button
-            onClick={onApply}
-            className="bg-neutral-900 text-white text-xs sm:text-sm font-semibold px-4 sm:px-5 py-2 hover:bg-neutral-700 transition-colors duration-200"
-          >
-            신청하기
-          </button>
-        </div>
-      </header>
+      <SiteHeader action={{ type: 'apply', onClick: onApply }} />
 
       {/* Hero */}
       <section className="border-b border-neutral-200">
