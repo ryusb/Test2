@@ -40,11 +40,10 @@ jobs:
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
         run: npm run build
 
-      # enablement: true — 리포지토리 Settings에서 손대지 않아도 Pages를 켜고
-      # 소스를 GitHub Actions로 설정한다. GITHUB_TOKEN의 pages: write 권한을 사용한다.
+      # 사전 조건: Settings > Pages > Source가 "GitHub Actions"로 설정돼 있어야 한다.
+      # enablement: true로 자동 활성화를 시도했으나 GITHUB_TOKEN에는 Pages 사이트
+      # 생성 권한이 없어 "Resource not accessible by integration"으로 실패한다.
       - uses: actions/configure-pages@v5
-        with:
-          enablement: true
 
       - uses: actions/upload-pages-artifact@v3
         with:

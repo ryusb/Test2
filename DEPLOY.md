@@ -5,9 +5,11 @@
 
 ## 최초 1회 설정
 
-1. **Pages 활성화** — 워크플로의 `actions/configure-pages`가 `enablement: true`로
-   자동 처리한다. 조직 정책 등으로 실패하면 Settings → Pages → Build and deployment →
-   Source를 **GitHub Actions**로 직접 변경한다.
+1. **Pages 활성화 (필수, 리포지토리 소유자만 가능)** — Settings → Pages →
+   Build and deployment → Source를 **GitHub Actions**로 변경.
+   이 설정 없이는 `configure-pages` 단계가 `Get Pages site failed`로 실패한다.
+   워크플로에서 `enablement: true`로 자동화할 수는 없다 — `GITHUB_TOKEN`에는
+   Pages 사이트 생성 권한이 없어 `Resource not accessible by integration`이 된다.
 2. **Supabase 값 등록** — Settings → Secrets and variables → Actions → New repository secret으로 두 개 추가:
    - `VITE_SUPABASE_URL` — Supabase 대시보드 > Project Settings > API > Project URL
    - `VITE_SUPABASE_ANON_KEY` — 같은 화면의 anon public key
