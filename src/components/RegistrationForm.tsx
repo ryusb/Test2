@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from 'react';
 import { Check, Loader2, AlertCircle } from 'lucide-react';
-import { supabase, type RegistrationInput } from '@/lib/supabase';
+import { supabase, isSupabaseConfigured, type RegistrationInput } from '@/lib/supabase';
 import SiteHeader from '@/components/SiteHeader';
 
 const EVENTS = [
@@ -31,6 +31,11 @@ export default function RegistrationForm({ onBack }: { onBack: () => void }) {
     if (!form.consent) {
       setStatus('error');
       setErrorMsg('개인정보 수집 및 이용에 동의해 주세요.');
+      return;
+    }
+    if (!isSupabaseConfigured) {
+      setStatus('error');
+      setErrorMsg('서버 설정이 완료되지 않아 접수할 수 없습니다. 잠시 후 다시 시도해 주세요.');
       return;
     }
     setStatus('submitting');
