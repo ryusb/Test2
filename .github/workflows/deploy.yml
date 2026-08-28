@@ -24,7 +24,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
 
       - run: npm ci
@@ -40,7 +40,11 @@ jobs:
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
         run: npm run build
 
+      # enablement: true — 리포지토리 Settings에서 손대지 않아도 Pages를 켜고
+      # 소스를 GitHub Actions로 설정한다. GITHUB_TOKEN의 pages: write 권한을 사용한다.
       - uses: actions/configure-pages@v5
+        with:
+          enablement: true
 
       - uses: actions/upload-pages-artifact@v3
         with:
